@@ -1,10 +1,10 @@
 document.getElementById('showGoreBtn').addEventListener('click', function() {
-    fetch('/Gore/output/list_pngs')
+    fetch('/HRRR/Gore/output/list_pngs')
         .then(response => response.json())
         .then(images => {
             const container = document.getElementById('goreImages');
             container.innerHTML = images.map(img =>
-                `<img src="/Gore/output/${img}" alt="${img}" class="fullscreenable">`
+                `<img src="/HRRR/Gore/output/${img}" alt="${img}" class="fullscreenable">`
             ).join('');
             container.style.display = 'grid';
             // Add fullscreen click event to each image
