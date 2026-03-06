@@ -2,7 +2,10 @@ from flask import Flask
 from routes import routes
 from js_routes import js_routes
 
+
 app = Flask(__name__)
+app.register_blueprint(routes)
+app.register_blueprint(js_routes)
 
 import threading
 def run_scripts(scripts, delay):
