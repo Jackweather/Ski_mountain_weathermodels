@@ -68,7 +68,7 @@ def download_grib_file_task(args):
     }
     response = requests.get(base_url, params=params, stream=True)
     if response.status_code == 200:
-        grib_dir = os.path.join("Gore", "grib_files_tmp")
+        grib_dir = os.path.join("HRRR", "Gore", "grib_files_tmp")
         if not os.path.exists(grib_dir):
             os.makedirs(grib_dir, exist_ok=True)
         file_path = os.path.join(grib_dir, f"hrrr.t{run}z.f{forecast_hour:02d}.grib2")
@@ -203,18 +203,18 @@ def generate_gore_tmp_forecast():
                 "hour": f"{day_label} {local_hour_12}",
                 "tmp_f": None
             })
-    output_dir = os.path.join("Gore", "output")
+    output_dir = os.path.join("HRRR", "Gore", "output")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir, exist_ok=True)
     generate_tmp_chart(forecast_data, output_dir, date, start_hour, run)
-    grib_dir = os.path.join("Gore", "grib_files_tmp")
+    grib_dir = os.path.join("HRRR", "Gore", "grib_files_tmp")
     if os.path.exists(grib_dir):
         for grib_file in os.listdir(grib_dir):
             os.remove(os.path.join(grib_dir, grib_file))
         os.rmdir(grib_dir)
 
 if __name__ == "__main__":
-    grib_dir = os.path.join("Gore", "grib_files_tmp")
+    grib_dir = os.path.join("HRRR", "Gore", "grib_files_tmp")
     if os.path.exists(grib_dir):
         for grib_file in os.listdir(grib_dir):
             os.remove(os.path.join(grib_dir, grib_file))
